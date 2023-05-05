@@ -26,15 +26,15 @@ public class Book {
 
     }
 
-    public Book(Long isbn, String title, String author, int numPages, String notes, boolean read, float rating, String imageUrl) {
+    public Book(Long isbn, String title, String author, int num_pages, String notes, boolean read, float rating, String image_url) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
-        this.num_pages = numPages;
+        this.num_pages = num_pages;
         this.notes = notes;
         this.isread = read;
         this.rating = rating;
-        this.image_url = imageUrl;
+        this.image_url = image_url;
     }
 
     public Long getIsbn() {
@@ -65,8 +65,8 @@ public class Book {
         return num_pages;
     }
 
-    public void setNumPages(int numPages) {
-        this.num_pages = numPages;
+    public void setNumPages(int num_pages) {
+        this.num_pages = num_pages;
     }
 
     public String getNotes() {
@@ -97,7 +97,7 @@ public class Book {
         return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.image_url = imageUrl;
+    public void setImageUrl(String image_url) {
+        this.image_url = image_url;
     }
 }
