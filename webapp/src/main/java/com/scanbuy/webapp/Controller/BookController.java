@@ -1,8 +1,11 @@
 package com.scanbuy.webapp.Controller;
 
+import com.scanbuy.webapp.DataAccessLayer.BookRepository;
 import com.scanbuy.webapp.DataAccessLayer.DataRepository;
 import com.scanbuy.webapp.Models.Book;
+import com.scanbuy.webapp.Service.BookService;
 import org.apache.catalina.users.SparseUserDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("v1/books")
 public class BookController {
 
     DataRepository repo = new DataRepository();
+//    @Autowired
+//    BookService repo;
     @PostMapping("/addbook")
     public ResponseEntity AddBook(@RequestBody Book book) {
 
