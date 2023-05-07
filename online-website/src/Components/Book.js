@@ -5,7 +5,7 @@ const Book = (props) => {
     return (
         <div className="book read" key={book.isbn}>
             <div className="cover">
-                <span className="rating">{book.rating}</span>
+                {book.rating>0? <span className="rating">{book.rating}</span>:null}
                 <img src={book.imageUrl}/>
             </div>
             <div className="description">

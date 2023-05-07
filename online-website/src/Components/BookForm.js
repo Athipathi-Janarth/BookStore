@@ -69,7 +69,7 @@ const BookForm = (props) => {
                 author: formData.author,
                 numPages: formData.num_pages,
                 notes: formData.notes,
-                read: formData.isread === "on" ? true : false,
+                read: formData.isread,
                 rating: formData.rating,
                 imageUrl: formData.image_url
             };
@@ -96,10 +96,11 @@ const BookForm = (props) => {
         }
     }
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: newValue
         }));
     };
 
@@ -165,13 +166,21 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                <input
+                                {book != null?  < input
                                     className="form-input"
                                     type="text"
                                     name="title"
                                     value={formData.title}
                                     onChange={handleChange}
-                                />
+                                    disabled={true}
+                                />: < input
+                                    className="form-input"
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    />
+                                }
                                 {errors.title && <span className="error">{errors.title}</span>}
                             </td>
                         </tr>
@@ -182,13 +191,20 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                <input
+                                {book != null? <input
                                     className="form-input"
                                     type="text"
                                     name="author"
                                     value={formData.author}
                                     onChange={handleChange}
-                                />
+                                    disabled={true}
+                                />:<input
+                                    className="form-input"
+                                    type="text"
+                                    name="author"
+                                    value={formData.author}
+                                    onChange={handleChange}
+                                />}
                                 {errors.author && <span className="error">{errors.author}</span>}
                             </td>
                         </tr>
@@ -199,13 +215,20 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                <input
+                                {book != null?  <input
                                     className="form-input"
                                     type="number"
                                     name="num_pages"
                                     value={formData.num_pages}
                                     onChange={handleChange}
-                                />
+                                    disabled={true}
+                                />: <input
+                                    className="form-input"
+                                    type="number"
+                                    name="num_pages"
+                                    value={formData.num_pages}
+                                    onChange={handleChange}
+                                />}
                                 {errors.num_pages && <span className="error">{errors.num_pages}</span>}
                             </td>
                         </tr>
@@ -235,7 +258,7 @@ const BookForm = (props) => {
                                     className="form-checkbox"
                                     type="checkbox"
                                     name="isread"
-                                    checked={formData.isread}
+                                    checked={formData.isread }
                                     onChange={handleChange}
                                 />
                             </td>
@@ -247,13 +270,20 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                <input
+                                {book!=null ? <input
                                     className="form-input"
                                     type="number"
                                     name="rating"
                                     value={formData.rating}
                                     onChange={handleChange}
-                                />
+                                    disabled={true}
+                                />:<input
+                                    className="form-input"
+                                    type="number"
+                                    name="rating"
+                                    value={formData.rating}
+                                    onChange={handleChange}
+                                />}
                             </td>
                         </tr>
                         <tr>
@@ -263,13 +293,20 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                <input
+                                {book!=null? <input
+                                    className="form-input"
+                                    type="text"
+                                    name="image_url"
+                                    value={formData.image_url}
+                                    disabled={true}
+                                    onChange={handleChange}
+                                />:<input
                                     className="form-input"
                                     type="text"
                                     name="image_url"
                                     value={formData.image_url}
                                     onChange={handleChange}
-                                />
+                                />}
                             </td>
                         </tr>
                         {book != null ?
