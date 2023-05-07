@@ -19,7 +19,7 @@
    This will start the REST API server at `http://localhost:8080`.
 
 
-## ScanBook Web Project
+## Web Project
 
 ### Prerequisites
 1. Node.js 
