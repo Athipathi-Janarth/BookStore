@@ -3,7 +3,7 @@ package com.scanbuy.webapp.Controller;
 import com.scanbuy.webapp.DataAccessLayer.BookRepository;
 import com.scanbuy.webapp.DataAccessLayer.DataRepository;
 import com.scanbuy.webapp.Models.Book;
-import com.scanbuy.webapp.Service.BookService;
+import com.scanbuy.webapp.Service.BookServices;
 import org.apache.catalina.users.SparseUserDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ import java.util.List;
 @RequestMapping("v1/books")
 public class BookController {
 
-    DataRepository repo = new DataRepository();
-//    @Autowired
-//    BookService repo;
+//    DataRepository repo = new DataRepository();
+    @Autowired
+    BookServices repo;
     @PostMapping("/addbook")
     public ResponseEntity AddBook(@RequestBody Book book) {
 

@@ -3,10 +3,12 @@ package com.scanbuy.webapp.Service;
 import com.scanbuy.webapp.DataAccessLayer.BookRepository;
 import com.scanbuy.webapp.Models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BookServices implements BookService{
     @Autowired
     BookRepository bookRepository;
