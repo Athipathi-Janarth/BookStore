@@ -35,4 +35,4 @@
    ```
    npm start
    ```
-   The ScanBook web application will be accessible at `http://localhost:3000`.
+   The website will be accessible at `http://localhost:3000`.
