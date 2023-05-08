@@ -1,10 +1,7 @@
 package com.scanbuy.webapp.Controller;
 
-import com.scanbuy.webapp.DataAccessLayer.BookRepository;
-import com.scanbuy.webapp.DataAccessLayer.DataRepository;
 import com.scanbuy.webapp.Models.Book;
 import com.scanbuy.webapp.Service.BookServices;
-import org.apache.catalina.users.SparseUserDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

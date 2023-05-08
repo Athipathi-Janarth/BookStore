@@ -2,9 +2,10 @@ import {useEffect, useState} from "react";
 import {getBook} from "../Utils/ApiCalls";
 import Book from "../Components/Book";
 import {validateISBN} from "../Utils/CheckISBN"
+import {toast} from "react-toastify";
 
 const Search = () => {
-    const [book, setBook] = useState(null);
+    const [book, setBook] = useState();
     const [isbn, setISBN] = useState();
 
     async function getABook() {
@@ -12,7 +13,6 @@ const Search = () => {
             const response = await getBook(isbn.toString());
             const data = await response.json();
             setBook(data);
-            alert("Book Added to Your Collection");
         } catch (error) {
             console.error('Error retrieving books:', error);
         }
@@ -24,7 +24,7 @@ const Search = () => {
             getABook();
         }
         else{
-            alert("ISBN Number is invalid")
+            toast.error("ISBN Number is invalid")
         }
     };
     return(
@@ -34,7 +34,7 @@ const Search = () => {
                        onChange={(e) => setISBN(e.target.value)}/>
                 <i className="searchInputIcon fa fa-search" onClick={handleValidation}></i>
             </div>
-            {book!=null? <Book book={book}></Book>:<div className={"not-Found"}>No Book Found!!!</div>}
+            { book!=undefined ? (book!=null? <Book book={book}></Book>:<div className={"not-Found"}>No Book Found!!!</div>):null}
         </div>
 
     )

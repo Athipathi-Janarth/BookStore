@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {validateISBN} from '../Utils/CheckISBN';
 import {deleteBook, updateBook, addBook} from "../Utils/ApiCalls";
 import {redirect, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 
 
@@ -49,8 +50,14 @@ const BookForm = (props) => {
             };
             try{
                 await addBook(updatedBook)
-                alert("Book Created Successfully");
-                navigate('/')
+                    .then((response) => {
+                        if (response.status === 400) {
+                            toast.error("Book Creation Failed");
+                        } else {
+                            toast.success("Book Created Successfully");
+                            navigate('/');
+                        }
+                    });
             }
             catch (error) {
                 console.error('Error Creating book:', error);
@@ -76,7 +83,7 @@ const BookForm = (props) => {
             console.log(updatedBook)
             try{
                 await updateBook(book.isbn.toString(),updatedBook)
-                alert("Book Updated Successfully");
+                toast.success("Book Updated Successfully");
                 navigate('/')
             }
             catch (error) {
@@ -90,6 +97,7 @@ const BookForm = (props) => {
     async function handleDelete() {
         try {
             await deleteBook(book.isbn);
+            toast.success("Book Deleted Successfully");
             navigate('/')
         } catch (error) {
             console.error('Error deleting book:', error);
@@ -128,7 +136,9 @@ const BookForm = (props) => {
         if (formData.num_pages <= 0) {
             errors.num_pages = 'Number of pages must be greater than 0';
         }
-        // Add more validation rules for other fields as needed
+        if(!formData.image_url){
+            formData.image_url = "https://i.pinimg.com/originals/02/2b/60/022b60acbef873ea3b61fd0f29b44dd3.jpg";
+        }
         return errors;
     };
 
@@ -166,21 +176,13 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                {book != null?  < input
-                                    className="form-input"
-                                    type="text"
-                                    name="title"
-                                    value={formData.title}
-                                    onChange={handleChange}
-                                    disabled={true}
-                                />: < input
+                                 < input
                                     className="form-input"
                                     type="text"
                                     name="title"
                                     value={formData.title}
                                     onChange={handleChange}
                                     />
-                                }
                                 {errors.title && <span className="error">{errors.title}</span>}
                             </td>
                         </tr>
@@ -191,20 +193,13 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                {book != null? <input
+                               <input
                                     className="form-input"
                                     type="text"
                                     name="author"
                                     value={formData.author}
                                     onChange={handleChange}
-                                    disabled={true}
-                                />:<input
-                                    className="form-input"
-                                    type="text"
-                                    name="author"
-                                    value={formData.author}
-                                    onChange={handleChange}
-                                />}
+                                />
                                 {errors.author && <span className="error">{errors.author}</span>}
                             </td>
                         </tr>
@@ -215,20 +210,13 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                {book != null?  <input
+                                 <input
                                     className="form-input"
                                     type="number"
                                     name="num_pages"
                                     value={formData.num_pages}
                                     onChange={handleChange}
-                                    disabled={true}
-                                />: <input
-                                    className="form-input"
-                                    type="number"
-                                    name="num_pages"
-                                    value={formData.num_pages}
-                                    onChange={handleChange}
-                                />}
+                                />
                                 {errors.num_pages && <span className="error">{errors.num_pages}</span>}
                             </td>
                         </tr>
@@ -270,20 +258,13 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                {book!=null ? <input
+                                <input
                                     className="form-input"
                                     type="number"
                                     name="rating"
                                     value={formData.rating}
                                     onChange={handleChange}
-                                    disabled={true}
-                                />:<input
-                                    className="form-input"
-                                    type="number"
-                                    name="rating"
-                                    value={formData.rating}
-                                    onChange={handleChange}
-                                />}
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -293,20 +274,13 @@ const BookForm = (props) => {
                                 </label>
                             </td>
                             <td>
-                                {book!=null? <input
-                                    className="form-input"
-                                    type="text"
-                                    name="image_url"
-                                    value={formData.image_url}
-                                    disabled={true}
-                                    onChange={handleChange}
-                                />:<input
+                                <input
                                     className="form-input"
                                     type="text"
                                     name="image_url"
                                     value={formData.image_url}
                                     onChange={handleChange}
-                                />}
+                                />
                             </td>
                         </tr>
                         {book != null ?
