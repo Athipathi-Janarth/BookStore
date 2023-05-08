@@ -1,4 +1,4 @@
-import logo from "../../../online-website/src/Assets/logo.png"
+import logo from "../../../online-website/src/Assets/logonew.png"
 import React from "react";
 //import {getAllBooks} from "../Utils/ApiCall";
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="logo-img"><img src={logo} alt="logo"/></div>
-            <div className="header-heading"><h1>Indian Book Store</h1><h3>Read books online. From bestsellers to niche books..</h3></div>
+            <div className="header-heading"><h1>Book Store</h1><h3>Read books online. From bestsellers to niche books..</h3></div>
         </div>
     )
 }

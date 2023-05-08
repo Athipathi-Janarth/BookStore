@@ -79,7 +79,7 @@ public class BookServices implements BookService{
     @Override
     public Book updateBook(Long isbn, Book updatedBook) throws Exception {
         Optional<Book> optionalBook = bookRepository.findById(updatedBook.getIsbn());
-        if (optionalBook.isPresent() && optionalBook.get().getIsbn()==isbn) {
+        if (optionalBook.isPresent()) {
             Book book = optionalBook.get();
             book.setTitle(updatedBook.getTitle());
             book.setAuthor(updatedBook.getAuthor());
